@@ -1,0 +1,38 @@
+services:
+  app:
+    build: .
+    ports:
+      - "${BACKEND_PORT}:8000"
+    depends_on:
+      - db
+    environment:
+      - DB_STRING=${DB_STRING}
+      - ALEMBIC_DB_URL=${ALEMBIC_DB_URL}
+      - DEBUG=${DEBUG}
+      - EMAIL_APP_PASSWORD=${EMAIL_APP_PASSWORD}
+      - APP_EMAIL_ADDRESS=${APP_EMAIL_ADDRESS}
+      - EMAIL_TEMPLATES_PATH=${EMAIL_TEMPLATES_PATH}
+      - FRONTEND_URL=${FRONTEND_URL}
+      - ADMIN_EMAILS=${ADMIN_EMAILS}
+      - GEMINI_API_KEY=${GEMINI_API_KEY}
+      - ALLOW_ADMINS_ONLY=${ALLOW_ADMINS_ONLY}
+    volumes:
+      - fs:/home/runner/app/fs
+
+  db:
+    image: postgres:17
+    environment:
+      - POSTGRES_USER=${PG_USER}
+      - POSTGRES_PASSWORD=${PG_PASSWORD}
+      - POSTGRES_DB=${PG_DATABASE}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U ${PG_USER} -d ${PG_DATABASE}"]
+      interval: 10s
+      timeout: 5s
+      retries: 5
+
+volumes:
+  postgres_data: {}
+  fs: {}

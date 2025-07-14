@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <title>Your LOSL-C Verification Code</title>
+  <style>
+    body {
+      background-color: #0f0f11;
+      font-family: Arial, sans-serif;
+      color: #e0e0e0;
+      margin: 0;
+      padding: 0;
+    }
+    p {
+      color: #e0e0e0;
+    }
+    .container {
+      max-width: 500px;
+      margin: 40px auto;
+      background-color: #1a1a1d;
+      border-radius: 12px;
+      padding: 30px;
+      text-align: center;
+    }
+    .logo {
+      width: 90px;
+      margin-bottom: 20px;
+    }
+    h1 {
+      color: #00aaff;
+      margin-bottom: 10px;
+    }
+    p {
+      font-size: 16px;
+      margin-bottom: 25px;
+      line-height: 1.5;
+    }
+    .otp-box {
+      display: inline-block;
+      font-size: 28px;
+      font-weight: bold;
+      background-color: #101013;
+      padding: 12px 24px;
+      border-radius: 8px;
+      letter-spacing: 8px;
+      color: #00ccff;
+      border: 2px solid #00aaff;
+    }
+    .footer {
+      margin-top: 30px;
+      font-size: 13px;
+      color: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <img src="{{ logo_url }}" alt="LOSL-C Logo" class="logo" />
+    <h1>Your Verification Code</h1>
+    <p>Hi {{ username }},<br />Use the code below to complete your verification. This code is valid for the next 60 minutes.</p>
+    
+    <div class="otp-box">{{ otp_code }}</div>
+
+    <p class="footer">
+      If you didn’t request this, please ignore this message.<br />
+      — The LOSL-C Team
+    </p>
+  </div>
+</body>
+</html>
